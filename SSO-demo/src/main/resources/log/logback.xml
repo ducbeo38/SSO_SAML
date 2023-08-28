@@ -1,0 +1,24 @@
+    <configuration>
+        <!-- Define the log file and its rolling strategy -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>logs/myapp.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>logs/myapp.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxHistory>30</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <!-- Define log levels for specific packages/classes -->
+        <logger name="vn.vnpay.service" level="INFO"/>
+        <logger name="vn.vnpay.controlller" level="INFO"/>
+        <logger name="vn.vnpay.authorization" level="WARN"/>
+        <logger name="vn.vnpay.authorization" level="ERROR"/>
+
+        <!-- Set the root logger level and its appender(s) -->
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+        </root>
+    </configuration>
